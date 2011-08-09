@@ -17,7 +17,8 @@ module GoogleOAuth
       options[:scope] ||= 'https://www.google.com/m8/feeds/'
       consumer.authorize_url(
         :redirect_uri => options[:callback] || @callback,
-        :scope => options[:scope]
+        :scope => options[:scope],
+        :response_type => "code"
       )
     end
 
