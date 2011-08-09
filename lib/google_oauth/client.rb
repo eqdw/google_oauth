@@ -19,9 +19,8 @@ module GoogleOAuth
         :redirect_uri => options[:callback] || @callback,
         :scope => options[:scope],
         :response_type => "code",
-        :client_id => @application_id,
-        :client_secret => @application_secret
-      )
+        :client_id => @application_id
+        )
     end
 
     def authorize(options = {})
