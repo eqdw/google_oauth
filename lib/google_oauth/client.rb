@@ -18,7 +18,9 @@ module GoogleOAuth
       consumer.authorize_url(
         :redirect_uri => options[:callback] || @callback,
         :scope => options[:scope],
-        :response_type => "code"
+        :response_type => "code",
+        :client_id => @application_id,
+        :client_secret => @application_secret
       )
     end
 
