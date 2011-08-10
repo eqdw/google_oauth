@@ -24,9 +24,13 @@ module GoogleOAuth
     end
 
     def authorize(options = {})
-      @access_token ||= consumer.get_token(
-        :code => options[:code], :redirect_uri => options[:callback] || @callback
-      )
+      @access_token ||= consumer.get_token({
+          :code          => options[:code],
+          :redirect_uri  => options[:callback]      || @callback,
+          :client_id     => options[:client_id]     || @application_id,
+          :client_secret => options[:client_secret] || @application_secret,
+          :grant_type    => "authorization_code"
+        })
       @token = @access_token.token
       @access_token
     end
