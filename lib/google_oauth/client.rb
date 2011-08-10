@@ -11,6 +11,7 @@ module GoogleOAuth
       @application_secret = options[:client_secret]
       @callback = options[:redirect]
       @token = options[:token]
+      @refresh_token = options[:refresh_token]
     end
 
     def authorize_url(options = {})
@@ -32,6 +33,20 @@ module GoogleOAuth
           :grant_type    => "authorization_code"
         })
       @token = @access_token.token
+      @refresh_token = @access_token.refresh_token
+      @access_token
+    end
+
+    def refresh(options = { })
+      @access_token = consumer.get_token({
+          :refresh_token => options[:refresh_token] || @refresh_token,
+          :redirect_uri  => options[:callback]      || @callback,
+          :client_id     => options[:client_id]     || @application_id,
+          :client_secret => options[:client_secret] || @application_secret,
+          :grant_type    => "refresh_token"
+        })
+      @token = @access_token.token
+      @refresh_token = @access_token.refrest_token
       @access_token
     end
 
