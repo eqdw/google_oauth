@@ -40,13 +40,11 @@ module GoogleOAuth
     def refresh(options = { })
       @access_token = consumer.get_token({
           :refresh_token => options[:refresh_token] || @refresh_token,
-          :redirect_uri  => options[:callback]      || @callback,
           :client_id     => options[:client_id]     || @application_id,
           :client_secret => options[:client_secret] || @application_secret,
           :grant_type    => "refresh_token"
         })
       @token = @access_token.token
-      @refresh_token = @access_token.refrest_token
       @access_token
     end
 
