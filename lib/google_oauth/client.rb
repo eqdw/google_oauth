@@ -55,13 +55,13 @@ module GoogleOAuth
       def _get_jsonc(url, params={})
         params.merge! 'alt' => 'jsonc'
         res = _get(url, params)
-        GoogleOAuth::HashResponse.new(JSON.parse(res)) rescue res
+        GoogleOAuth::HashResponse.new(JSON.parse(res.body)) rescue res
       end
 
       def _get_json(url, params={})
         params.merge! 'alt' => 'json'
         res = _get(url, params)
-        JSON.parse(res) rescue res
+        JSON.parse(res.body) rescue res
       end
 
       def _get(url, params={})
@@ -70,7 +70,7 @@ module GoogleOAuth
 
       def _post(url, params={}, headers={})
         oauth_response = access_token.post(url,{ :params => params, :headers => headers})
-        JSON.parse(oauth_response) rescue oauth_response
+        JSON.parse(oauth_response.body) rescue oauth_response
       end
 
       def _delete(url)
