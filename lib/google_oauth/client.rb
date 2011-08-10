@@ -25,8 +25,7 @@ module GoogleOAuth
 
     def authorize(options = {})
       @access_token ||= consumer.get_token(
-        options[:code],
-        :redirect_uri => options[:callback] || @callback
+        :code => options[:code], :redirect_uri => options[:callback] || @callback
       )
       @token = @access_token.token
       @access_token
@@ -40,7 +39,7 @@ module GoogleOAuth
           {
             :site => "https://accounts.google.com",
             :authorize_url => '/o/oauth2/auth',
-            :access_token_url => '/o/oauth2/token'
+            :token_url => '/o/oauth2/token'
           }
         )
       end
