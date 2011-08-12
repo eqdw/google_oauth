@@ -1,22 +1,21 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{google_oauth}
-  s.version = "0.0.2"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Richard Taylor"]
-  s.date = %q{2011-05-04}
+   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.name = "google_oauth"
+  s.version = GoogleOAuth::VERSION
+
+  s.authors = ["Richard Taylor", "Tim Herd"]
+  s.date = "2011/08/12"
+
   s.description = %q{google_oauth is a OAuth2 Ruby client library for the Google Data APIs}
-  s.email = %q{moomerman@gmail.com}
-  s.files = ["LICENSE", "README.textile","lib/google_oauth.rb"] + Dir.glob('lib/google_oauth/*.rb')
-  s.has_rdoc = false
-  s.homepage = %q{http://github.com/moomerman/google_oauth}
-  s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
+  s.summary     = %q{google_oauth is a OAuth2 Ruby client library for the Google Data APIs}
+
+  s.email = %q{moomerman@gmail.com timherd@eqdw.net}
+  s.files = `git ls-files`.split("\n")
+  s.homepage = %q{http://github.com/erauqssidlroweht/google_oauth}
   s.require_paths = ["lib"]
-  s.rubyforge_project = %q{google_oauth}
-  s.rubygems_version = %q{1.3.1}
-  s.summary = %q{google_oauth is a OAuth2 Ruby client library for the Google Data APIs}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
