@@ -83,7 +83,6 @@ module GoogleOAuth
 
       def _post(url, body, params={}, headers={})
         oauth_response = access_token.post(url, { :body => body, :params => params, :headers => headers})
-        JSON.parse(oauth_response.body) rescue oauth_response
       end
 
       def _delete(url)
