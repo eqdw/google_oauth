@@ -49,46 +49,50 @@ module GoogleOAuth
     end
 
     private
-      def consumer
-        @consumer ||= OAuth2::Client.new(
-          @application_id,
-          @application_secret,
-          {
-            :site => "https://accounts.google.com",
-            :authorize_url => '/o/oauth2/auth',
-            :token_url => '/o/oauth2/token'
-          }
+    def consumer
+      @consumer ||= OAuth2::Client.new(
+        @application_id,
+        @application_secret,
+        {
+          :site => "https://accounts.google.com",
+          :authorize_url => '/o/oauth2/auth',
+          :token_url => '/o/oauth2/token'
+        }
         )
-      end
+    end
 
-      def access_token
-        OAuth2::AccessToken.new(consumer, @token)
-      end
+    def access_token
+      OAuth2::AccessToken.new(consumer, @token)
+    end
 
-      def _get_jsonc(url, params={})
-        params.merge! 'alt' => 'jsonc'
-        res = _get(url, params)
-        GoogleOAuth::HashResponse.new(JSON.parse(res.body)) rescue res
-      end
+    def _get_jsonc(url, params={})
+      params.merge! 'alt' => 'jsonc'
+      res = _get(url, params)
+      GoogleOAuth::HashResponse.new(JSON.parse(res.body)) rescue res
+    end
 
-      def _get_json(url, params={})
-        params.merge! 'alt' => 'json'
-        res = _get(url, params)
-        JSON.parse(res.body) rescue res
-      end
+    def _get_json(url, params={})
+      params.merge! 'alt' => 'json'
+      res = _get(url, params)
+      JSON.parse(res.body) rescue res
+    end
 
-      def _get(url, params={})
-        oauth_response = access_token.get(url, { :params => params })
-      end
+    def _get(url, params={})
+      oauth_response = access_token.get(url, { :params => params })
+    end
 
-      def _post(url, body, params={}, headers={})
-        oauth_response = access_token.post(url, { :body => body, :params => params, :headers => headers})
-      end
+    def _post(url, body, params={}, headers={})
+      oauth_response = access_token.post(url, { :body => body, :params => params, :headers => headers})
+    end
 
-      def _delete(url)
-        oauth_response = access_token.delete(url)
-        JSON.parse(oauth_response) rescue oauth_response
-      end
+    def _put(url, body, params={ }, headers={ })
+      oauth_response = access_token.put(url, { :body => body, :params => params, :headers => headers})
+    end
+
+    def _delete(url)
+      oauth_response = access_token.delete(url)
+      JSON.parse(oauth_response) rescue oauth_response
+    end
   end
 end
 
