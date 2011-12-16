@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version = GoogleOAuth::VERSION
 
   s.authors = ["Richard Taylor", "Tim Herd"]
-  s.date = "2011/08/12"
+  s.date = %q{2011-10-08}
 
   s.description = %q{google_oauth is a OAuth2 Ruby client library for the Google Data APIs}
   s.summary     = %q{google_oauth is a OAuth2 Ruby client library for the Google Data APIs}
